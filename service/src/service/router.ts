@@ -364,6 +364,8 @@ router.post('/upload', uploadLimiter, async (req: t.AuthenticatedRequest, res: R
      * lookups (skill files look "missing" even when uploaded). */
     const bb = busboy({
       headers: req.headers,
+      defCharset: 'utf8',
+      defParamCharset: 'utf8',
       limits: { fileSize: planFileSize },
       preservePath: true,
     });
@@ -574,6 +576,8 @@ router.post('/upload/batch', uploadLimiter, async (req: t.AuthenticatedRequest, 
     /* See note on the single-upload busboy above for why preservePath is set. */
     const bb = busboy({
       headers: req.headers,
+      defCharset: 'utf8',
+      defParamCharset: 'utf8',
       limits: { fileSize: planFileSize, files: MAX_BATCH_FILES },
       preservePath: true,
     });
